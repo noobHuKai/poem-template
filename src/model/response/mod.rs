@@ -7,17 +7,26 @@ pub type JsonResponse<T> = Json<Response<T>>;
 pub struct Response<T> {
     code: i32,
     message: String,
-    data: T,
+    data: Option<T>,
 }
 
 const RESPONSE_STATUS_OK: i32 = 200;
+const RESPONSE_STATUS_FAIL: i32 = 500;
 
 impl<T> Response<T> {
     pub fn ok_with_data(data: T) -> JsonResponse<T> {
         Json(Self {
             code: RESPONSE_STATUS_OK,
             message: "".to_string(),
-            data,
+            data: Some(data),
+        })
+    }
+
+    pub fn fail_with_msg(msg: String) -> JsonResponse<T> {
+        Json(Self {
+            code: RESPONSE_STATUS_FAIL,
+            message: msg,
+            data: None,
         })
     }
 }

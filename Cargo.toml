@@ -9,12 +9,16 @@ edition = "2021"
 anyhow = "1.0.66"
 chrono = "0.4.23"
 dotenv = "0.15.0"
+opentelemetry = { version = "0.18.0", features = ["metrics", "rt-tokio"] }
+opentelemetry-jaeger = {version = "0.17.0",features = ["rt-tokio"]}
 poem = "1.3.50"
 redis = { version = "0.22.1", features = ["tokio-comp"] }
 serde = { version = "1.0.150", features = ["derive"] }
-sqlx = { version = "0.6.2", features = ["runtime-tokio-native-tls", "postgres", "any"] }
+serde_json = "1.0.89"
+sqlx = { version = "0.6.2", features = ["runtime-tokio-native-tls", "postgres", "uuid", "chrono"] }
 tokio = { version = "1.23.0", features = ["macros", "rt-multi-thread", "signal"] }
 toml = "0.5.9"
 tracing = "0.1.37"
 tracing-appender = "0.2.2"
+tracing-opentelemetry = "0.18.0"
 tracing-subscriber = "0.3.16"

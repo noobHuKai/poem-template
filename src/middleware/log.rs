@@ -1,5 +1,4 @@
 use poem::{async_trait, Endpoint, IntoResponse, Middleware, Request, Response, Result};
-
 pub struct LogMiddleware;
 
 impl<E: Endpoint> Middleware<E> for LogMiddleware {
@@ -18,7 +17,8 @@ impl<E: Endpoint> Endpoint for LogImpl<E> {
 
     async fn call(&self, req: Request) -> Result<Self::Output> {
         tracing::info!(
-            "access : {} {} {}",
+            target:"access",
+            "{} {} {}",
             req.method(),
             req.uri().path(),
             req.remote_addr()
